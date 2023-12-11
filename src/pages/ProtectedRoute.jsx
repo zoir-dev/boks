@@ -5,12 +5,12 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     const key = JSON.parse(localStorage.getItem("data"));
-    if (key !== null && window.location.pathname === "/") {
+    if (!key.name && window.location.pathname !== "/") {
       return navigate("/sign");
-    } else if (key !== null) {
+    } else if (key.name) {
       return navigate("/");
     }
-  }, [window.location.pathname]);
+  }, [navigate]);
 
   return <>{children}</>;
 };
